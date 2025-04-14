@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="menu fade-in">
+
+    <h1>Our Exquisite Menu</h1>
+    
+    <!-- Menu Categories -->
+    <div class="menu-categories">
+        <button class="category-btn active" onclick="showCategory('main')">
+            <img src="{{ url_for('static', filename='icons/main.webp') }}" alt="Main">
+            Main
+        </button>
+        <button class="category-btn" onclick="showCategory('dessert')">
+            <img src="{{ url_for('static', filename='icons/desserts.webp') }}" alt="Dessert">
+            Dessert
+        </button>
+        <button class="category-btn" onclick="showCategory('drinks')">
+            <img src="{{ url_for('static', filename='icons/drinks.webp') }}" alt="Drinks">
+            Drinks
+        </button>
+    </div>
+
+    <!-- Main Dishes -->
+    <div class="menu-grid" id="main">
+        <a href="{{ url_for('dish_detail', dish_name='hyderabadi-biryani') }}" class="menu-item-link">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/biryani.webp') }}" alt="Hyderabadi Biryani">
+                <div class="menu-item-content">
+                    <h2>CLASSIC ENTREES</h2>
+                    <p>Meat, flavourfull Rice</p>
+                </div>
+        
+            </div>
+        </a>
+
+        <a href="{{ url_for('dish_detail', dish_name='butter-chicken') }}" class="menu-item-link">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/butter chicken.webp') }}" alt="Butter Chicken">
+                <div class="menu-item-content">
+                    <h2>TNANDOORI TALES</h2>
+                    <p>Chicken, gravy</p>
+                </div>
+        
+            </div>
+        </a>
+
+        <a href="{{ url_for('dish_detail', dish_name='arabian-mandi') }}" class="menu-item-link">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/mandi.webp') }}" alt="Arabian Mandi">
+                <div class="menu-item-content">
+                    <h2>MYSTIC CURRIES</h2>
+                    <p>Meat, juicy rice, served with stew, mayonaise and red chutney</p>
+                </div>
+            </div>
+        </a>
+
+        <a href="{{ url_for('dish_detail', dish_name='butter-garlic-naan') }}" class="menu-item-link">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/naan.webp') }}" alt="Butter Garlic Naan">
+                <div class="menu-item-content">
+                    <h2>KARAHI SECRETS</h2>
+                    <p>Bread served with a hint of garlic and butter</p>
+                </div>
+            
+            </div>
+        </a>
+
+        <a href="{{ url_for('dish_detail', dish_name='butter-garlic-naan') }}" class="menu-item-link">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/naan.webp') }}" alt="Butter Garlic Naan">
+                <div class="menu-item-content">
+                    <h2>KARAHI SECRETS</h2>
+                    <p>Bread served with a hint of garlic and butter</p>
+                </div>
+            
+            </div>
+        </a>
+
+        <a href="{{ url_for('dish_detail', dish_name='butter-garlic-naan') }}" class="menu-item-link">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/naan.webp') }}" alt="Butter Garlic Naan">
+                <div class="menu-item-content">
+                    <h2>HYDERABADI DUM BIRYANIS</h2>
+                    <p>Bread served with a hint of garlic and butter</p>
+                </div>
+            
+            </div>
+        </a>
+
+        <a href="{{ url_for('dish_detail', dish_name='butter-garlic-naan') }}" class="menu-item-link">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/naan.webp') }}" alt="Butter Garlic Naan">
+                <div class="menu-item-content">
+                    <h2>ARABIAN MANDIS</h2>
+                    <p>Bread served with a hint of garlic and butter</p>
+                </div>
+                
+            </div>
+        </a>
+
+        <a href="{{ url_for('dish_detail', dish_name='butter-garlic-naan') }}" class="menu-item-link">
+            <div class="menu-item">
+                <img src="{{ url_for('static', filename='images/naan.webp') }}" alt="Butter Garlic Naan">
+                <div class="menu-item-content">
+                    <h2>BREADS AND CHUTNEYS</h2>
+                    <p>Bread served with a hint of garlic and butter</p>
+                </div>
+                
+            </div>
+        </a>
+    </div>
+
+    <!-- Desserts -->
+    <div class="menu-grid hidden" id="dessert">
+        <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/ice-cream.webp') }}" alt="Ice Cream">
+            <div class="menu-item-content">
+                <h2>Fruit Vanilla Ice Cream</h2>
+                <p>Fresh fruits, Vanilla ice cream, Honey</p>
+            </div>
+            <div class="menu-item-price">$12</div>
+        </div>
+
+        <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/chocolate-cake.webp') }}" alt="Chocolate Cake">
+            <div class="menu-item-content">
+                <h2>Chocolate Lava Cake</h2>
+                <p>Dark chocolate, Vanilla ice cream</p>
+            </div>
+            <div class="menu-item-price">$14</div>
+        </div>
+
+        <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/tiramisu.webp') }}" alt="Tiramisu">
+            <div class="menu-item-content">
+                <h2>Classic Tiramisu</h2>
+                <p>Coffee, Mascarpone, Cocoa</p>
+            </div>
+            <div class="menu-item-price">$11</div>
+        </div>
+    </div>
+
+    <!-- Drinks -->
+    <div class="menu-grid hidden" id="drinks">
+        <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/cocktail.webp') }}" alt="Signature Cocktail">
+            <div class="menu-item-content">
+                <h2>Signature Cocktail</h2>
+                <p>Premium spirits, Fresh fruits</p>
+            </div>
+            <div class="menu-item-price">$15</div>
+        </div>
+
+        <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/wine.webp') }}" alt="House Wine">
+            <div class="menu-item-content">
+                <h2>House Wine</h2>
+                <p>Red or White wine selection</p>
+            </div>
+            <div class="menu-item-price">$12</div>
+        </div>
+
+        <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/smoothie.webp') }}" alt="Fresh Smoothie">
+            <div class="menu-item-content">
+                <h2>Fresh Fruit Smoothie</h2>
+                <p>Seasonal fruits, Yogurt, Honey</p>
+            </div>
+            <div class="menu-item-price">$8</div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+function showCategory(category) {
+    // Hide all menu grids
+    document.querySelectorAll('.menu-grid').forEach(grid => {
+        grid.classList.add('hidden');
+    });
+    
+    // Show selected category
+    document.getElementById(category).classList.remove('hidden');
+    
+    // Update active button
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.currentTarget.classList.add('active');
+}
+</script>
+{% endblock %}

@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="slideshow-container fade-in">
+    <div class="slide fade">
+        <img src="{{ url_for('static', filename='images/butter chicken.webp') }}" alt="Slide 1">
+    </div>
+    <div class="slide fade">
+        <img src="{{ url_for('static', filename='images/bg5.webp') }}" alt="Slide 2">
+    </div>
+    <div class="slide fade">
+        <img src="{{ url_for('static', filename='images/spices.webp') }}" alt="Slide 3">
+    </div>
+    <div class="slide fade">
+        <img src="{{ url_for('static', filename='images/falalfel.webp') }}" alt="Slide 4">
+    </div>
+    <div class="slide fade">
+        <img src="{{ url_for('static', filename='images/nihari.webp') }}" alt="Slide 5">
+    </div>
+    
+    <!-- Hero Section Overlay -->
+    <div class="hero-overlay">
+        <h1>Welcome to New Zak's Kitchen</h1>
+        <h2>Bringing heritage to your table</h2>
+        <a href="{{ url_for('make_reservation') }}" class="hero-button">Book a table</a>
+    </div>
+    
+    <!-- Arrow Navigation -->
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    
+    <!-- Navigation dots -->
+    <div class="dots-container">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+    </div>
+</div>
+
+
+<!-- Reservation Section -->
+<section id="reservations" class="home-reservation">
+    <div class="reservation-container">
+        <div class="image-section">
+            <img src="{{ url_for('static', filename='images/reservation1.webp') }}" alt="Restaurant Interior">
+        </div>
+        <div class="booking-section">
+            <div class="booking-header">
+                <span class="cursive-text">Reserve Your Table</span>
+                <h2></h2>
+            </div>
+            <form class="elegant-form" action="{{ url_for('make_reservation') }}" method="POST">
+                <div class="form-group-row">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <div>
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Phone" required>
+                    </div>
+                    <div>
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <div>
+                        <label for="time">Time</label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
+                    <div>
+                        <label for="guests">Person</label>
+                        <select id="guests" name="guests" required>
+                            <option value="">Select Person</option>
+                            <option value="1">1 Person</option>
+                            <option value="2">2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4 People</option>
+                            <option value="5">5 People</option>
+                            <option value="6">6+ People</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="reservation-btn">Make a Reservation</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Our Story Section -->
+<section id="our-story" class="our-story">
+    <div class="story-container">
+        <div class="story-content">
+            <h2>Our Story</h2>
+            <p>Bringing heritage to your table, one dish at a time.</p>
+            <p>We are a family-owned restaurant built on a passion for flavour,
+                tradition, and heartfelt hospitality. For us, food is more than just
+                nourishment—it's connection, memory, and culture served on a plate.</p> 
+            <p>Inspired by the vibrant kitchens of South Asia and the Middle East, our
+                menu blends time-honoured recipes with bold spices and comforting
+                classics. From sizzling grills and slow-cooked curries to street-style
+                snacks and soul-warming biryanis and mandis, every dish is prepared
+                with care, using fresh ingredients and authentic flavours that honour
+                our roots.</p>
+                <P>Whether you're joining us for a quick bite or a special gathering, we
+                    invite you to sit back, share a meal, and experience the kind of warmth
+                    only a family-run kitchen can offer.
+                    </P>
+            <a href="{{ url_for('about') }}" class="story-button">Learn More</a>
+        </div>
+        <div class="story-image">
+            <img src="{{ url_for('static', filename='images/spices.webp') }}" alt="Our Story">
+        </div>
+    </div>
+</section>
+
+
+<!-- Gallery Section -->
+<section id="gallery" class="gallery-section">
+    <div class="gallery-container">
+        <div class="gallery-header">
+            <span class="cursive-text">Our Gallery</span>
+            <h2>A Visual Feast</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/butter chicken.webp') }}" alt="Butter Chicken">
+                <div class="gallery-overlay">
+                    <h3>Butter Chicken</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/nihari.webp') }}" alt="Nihari">
+                <div class="gallery-overlay">
+                    <h3>Nihari</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/falalfel.webp') }}" alt="Falafel">
+                <div class="gallery-overlay">
+                    <h3>Falafel</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/spices.webp') }}" alt="Spices">
+                <div class="gallery-overlay">
+                    <h3>Our Spices</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/bg5.webp') }}" alt="Restaurant Ambiance">
+                <div class="gallery-overlay">
+                    <h3>Restaurant Ambiance</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/reservation1.webp') }}" alt="Dining Area">
+                <div class="gallery-overlay">
+                    <h3>Dining Area</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+

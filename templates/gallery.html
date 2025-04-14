@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="gallery fade-in">
+    <h1>Our Exquisite Ambiance</h1>
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='images/about.webp') }}" alt="Elegant Restaurant Interior" onclick="openLightbox(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='images/outlet.webp') }}" alt="Our Restaurant Outlet" onclick="openLightbox(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='images/dish.webp') }}" alt="Signature Dishes" onclick="openLightbox(this)">
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+</div>
+{% endblock %}

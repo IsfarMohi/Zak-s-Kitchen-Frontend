@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="contact fade-in">
+    <h1>Contact Us</h1>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Visit Us</h2>
+            <p><strong>Address:</strong> 195 Howick ST, Bathurst, NSW</p>
+            <p><strong>Phone:</strong> 041-102-0566</p>
+            <p><strong>Email:</strong> info@zakskitchenau.com</p>
+        </div>
+
+        <div class="contact-form">
+            <h2>Send a Message</h2>
+            <form id="contactForm" method="POST" action="/contact">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <p id="form-message"></p>
+        </div>
+    </div>
+</section>
+{% endblock %}

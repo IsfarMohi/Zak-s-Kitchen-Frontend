@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>www.zakskitchenau.com</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" media="screen and (max-width: 1130px) " href="{{ url_for('static', filename='css/phone.css') }}">
+    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<header>
+    <div class="logo">
+        <a href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Zak's Kitchen" class="logo-img">
+        </a>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('static', filename='menu/Zak\'s_Kitchen_Menu.pdf') }}" target="_blank">Menu</a></li>
+            <li><a href="{{ url_for('home') }}#reservations">Reservations</a></li>
+            <li><a href="{{ url_for('home') }}#our-story">About</a></li>
+            <li><a href="{{ url_for('home') }}#gallery">Gallery</a></li>
+            <li><a href="#footer">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+</header>
+
+<!-- Main Content -->
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h2>Contact Information</h2>
+            <p><strong>Visit Us</strong></p>
+            <p><strong>Address:</strong> 195 Howick ST, Bathurst, NSW</p>
+            <p><strong>Phone:</strong> 041-102-0566</p>
+            <p><strong>Email:</strong> info@zakskitchenau.com</p>
+        </div>
+        
+        <!-- <div class="footer-section">
+            <h2>Opening Hours</h2>
+            <p>Mon - Fri: 10:00 AM - 9:00 PM</p>
+            <p>Sat - Sun: 10:00 AM - 10:00 PM</p>
+        </div> -->
+
+        <div class="footer-section">
+            <h2>Locate us on map</h2>
+            <div class="footer-map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8280305550287!2d149.57920977612345!3d-33.417979979999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b1f8f0f0f0f0f0f%3A0xf0f0f0f0f0f0f0f0!2s195%20Howick%20St%2C%20Bathurst%20NSW%202795!5e0!3m2!1sen!2sau!4v1648000000000!5m2!1sen!2sau"
+                    width="100%" 
+                    height="150" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 New Zak's Kitchen | All Rights Reserved</p>
+        <div class="social-icons">
+            <a href="#"><img src="{{ url_for('static', filename='icons/fb4.webp') }}" alt="Facebook"></a>
+            <a href="#"><img src="{{ url_for('static', filename='icons/in4.webp') }}" alt="Instagram"></a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
