@@ -52,47 +52,48 @@
                 <span class="cursive-text">Reserve Your Table</span>
                 <h2></h2>
             </div>
-            <form class="elegant-form" action="{{ url_for('make_reservation') }}" method="POST">
+            <form id="reservationForm" class="elegant-form" action="{{ url_for('make_reservation') }}" method="POST">
                 <div class="form-group-row">
-                    <div>
+                    <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" placeholder="Your Name" required>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" placeholder="Your Email" required>
                     </div>
                 </div>
                 <div class="form-group-row">
-                    <div>
+                    <div class="form-group">
                         <label for="phone">Phone</label>
                         <input type="tel" id="phone" name="phone" placeholder="Phone" required>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="date">Date</label>
                         <input type="date" id="date" name="date" required>
                     </div>
                 </div>
                 <div class="form-group-row">
-                    <div>
+                    <div class="form-group">
                         <label for="time">Time</label>
                         <input type="time" id="time" name="time" required>
                     </div>
-                    <div>
-                        <label for="guests">Person</label>
+                    <div class="form-group">
+                        <label for="guests">Number of Guests</label>
                         <select id="guests" name="guests" required>
-                            <option value="">Select Person</option>
-                            <option value="1">1 Person</option>
-                            <option value="2">2 People</option>
-                            <option value="3">3 People</option>
-                            <option value="4">4 People</option>
-                            <option value="5">5 People</option>
-                            <option value="6">6+ People</option>
+                            <option value="">Select Number of Guests</option>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5">5 Guests</option>
+                            <option value="6">6+ Guests</option>
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="reservation-btn">Make a Reservation</button>
+                <button type="submit" class="reservation-btn">Book Reservation</button>
             </form>
+            <div id="response"></div>
         </div>
     </div>
 </section>
@@ -172,6 +173,30 @@
         </div>
     </div>
 </section>
+
+
+<script>
+    document.getElementById('reservationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            date: document.getElementById('date').value,
+            time: document.getElementById('time').value,
+            guests: document.getElementById('guests').value
+        };
+        
+        const clientId = "139597936887-gvubfkkfltgqlqoqnboq5u6qv925g2p0.apps.googleusercontent.com";
+        const redirectUri = 'https://mib3825.pythonanywhere.com/oauth2callback';
+        const scope = 'https://www.googleapis.com/auth/gmail.send';
+        const state = JSON.stringify(formData);
+        const oauthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&access_type=offline&include_granted_scopes=true&state=${encodeURIComponent(state)}`;
+        
+        window.location.href = oauthUrl;
+    });
+</script>
 
 {% endblock %}
 

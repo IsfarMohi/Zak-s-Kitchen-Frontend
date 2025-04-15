@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 
-from Backend.db import add_data
-from Backend.mail import get_gmail_service, send_message, create_message
+# from Backend.db import add_data
+# from Backend.mail import get_gmail_service, send_message, create_message
 # from Backend.email_template import html_content
 
 
