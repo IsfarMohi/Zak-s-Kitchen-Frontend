@@ -17,17 +17,19 @@
             <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Zak's Kitchen" class="logo-img">
         </a>
     </div>
-    <nav>
-        <ul class="nav-links">
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('static', filename='menu/Zak\'s_Kitchen_Menu.pdf') }}" target="_blank">Menu</a></li>
-            <li><a href="{{ url_for('home') }}#reservations">Reservations</a></li>
-            <li><a href="{{ url_for('home') }}#our-story">About</a></li>
-            <li><a href="{{ url_for('home') }}#gallery">Gallery</a></li>
-            <li><a href="#footer">Contact</a></li>
-        </ul>
-    </nav>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+    
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('static', filename='menu/Zak\'s_Kitchen_Menu.pdf') }}" target="_blank">Menu</a></li>
+                <li><a href="{{ url_for('home') }}#reservations">Reservations</a></li>
+                <li><a href="{{ url_for('home') }}#our-story">About</a></li>
+                <li><a href="{{ url_for('home') }}#gallery">Gallery</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
 </header>
 
 <!-- Main Content -->
