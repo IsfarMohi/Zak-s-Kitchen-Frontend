@@ -41,7 +41,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: url('../images/banner.png') no-repeat center center;
+    background: url('../images/banner1.svg') no-repeat center center;
     background-size: cover;
     padding: 5px;
     box-shadow: 0 0 10px rgba(255, 180, 0, 0.5);
