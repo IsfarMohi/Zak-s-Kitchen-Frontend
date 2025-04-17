@@ -40,6 +40,8 @@ nav ul {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
+
+
 nav ul.show {
     display: flex;
 }
@@ -52,7 +54,7 @@ nav ul li {
 
 nav ul li a {
     color: white;
-    padding: 15px 20px;
+    padding: 10px 15px;
     display: block;
     width: 100%;
     text-decoration: none;
@@ -78,7 +80,7 @@ main {
     color: black;
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 1130px) {
     .menu-icon {
         display: none;
     }
@@ -105,29 +107,6 @@ main {
     }
 }
 
-/* Footer */
-footer {
-    width: 100%;
-    overflow: hidden;
-    padding: 20px 15px;
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.footer-section {
-    width: 100%;
-    padding: 10px;
-}
-
-.footer-map iframe {
-    width: 100%;
-    height: 200px;
-    border: none;
-}
 
 /* Images */
 img {
