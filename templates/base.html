@@ -49,11 +49,12 @@
             <p><strong>Email:</strong> info@zakskitchenau.com</p>
         </div>
         
-        <!-- <div class="footer-section">
+        <div class="footer-section">
             <h2>Opening Hours</h2>
-            <p>Mon - Fri: 10:00 AM - 9:00 PM</p>
-            <p>Sat - Sun: 10:00 AM - 10:00 PM</p>
-        </div> -->
+            <p>Tuesday - Thursday: 3:00 PM - 9:00 PM</p>
+            <p>Friday - Saturday: 1:00 PM - 9:00 PM</p>
+            <p>Monday: Closed</p>
+        </div>
 
         <div class="footer-section">
             <h2>Locate us on map</h2>
@@ -72,6 +73,11 @@
 
     <div class="footer-bottom">
         <p>© 2025 New Zak's Kitchen | All Rights Reserved</p>
+        <div class="footer-links">
+            <a href="{{ url_for('terms') }}">Terms & Conditions</a>
+            <span>|</span>
+            <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+        </div>
         <div class="social-icons">
             <a href="https://www.facebook.com/zak.s.kitchen.2025/"><img src="{{ url_for('static', filename='icons/fb4.webp') }}" alt="Facebook"></a>
             <a href="https://www.instagram.com/zakskitchen_au/"><img src="{{ url_for('static', filename='icons/in4.webp') }}" alt="Instagram"></a>
