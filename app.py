@@ -68,6 +68,14 @@ def dish_detail(dish_name):
     # You can add logic here to fetch dish details from a database
     return render_template('dish_detail.html', dish_name=dish_name)
 
+@app.route('/terms')
+def terms():
+    return render_template('terms.html')
+
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
+
 # @app.route("/test-db")
 # def test_db():
 #     conn = get_db_connection()
