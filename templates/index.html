@@ -76,7 +76,33 @@
                 <div class="form-group-row">
                     <div class="form-group">
                         <label for="time">Time</label>
-                        <input type="time" id="time" name="time" required min="15:00" max="22:00">
+                        <div class="time-picker-container">
+                            <input type="text" id="selected-time" readonly placeholder="Select Time" required>
+                            <button type="button" class="clock-icon" onclick="toggleTimePicker()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </button>
+                            <div class="time-picker-dropdown" id="timePickerDropdown">
+                                <div class="time-columns">
+                                    <div class="time-column hours-column">
+                                        <div class="time-header">Hour</div>
+                                        <div class="time-options" id="hourOptions"></div>
+                                    </div>
+                                    <div class="time-column minutes-column">
+                                        <div class="time-header">Minute</div>
+                                        <div class="time-options" id="minuteOptions"></div>
+                                    </div>
+                                    <div class="time-column ampm-column">
+                                        <div class="time-header">AM/PM</div>
+                                        <div class="time-options">
+                                            <div class="time-option" onclick="selectAmPm('PM')">PM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="guests">Number of Guests</label>
@@ -175,32 +201,219 @@
 </section>
 
 
-<script>
-    document.getElementById('reservationForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            date: document.getElementById('date').value,
-            time: document.getElementById('time').value,
-            guests: document.getElementById('guests').value
-        };
-        
-        const clientId = "139597936887-gvubfkkfltgqlqoqnboq5u6qv925g2p0.apps.googleusercontent.com";
-        const redirectUri = 'https://mib3825.pythonanywhere.com/oauth2callback';
-        const scope = 'https://www.googleapis.com/auth/gmail.send';
-        const state = JSON.stringify(formData);
-        const oauthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&access_type=offline&include_granted_scopes=true&state=${encodeURIComponent(state)}`;
-        
-        window.location.href = oauthUrl;
-    });
+<style>
+.time-picker-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('date').setAttribute('min', today);
+.time-picker-container input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ffa800;
+    border-radius: 4px;
+    font-size: 0.95em;
+    color: #fff;
+    background: rgba(255, 168, 0, 0.1);
+    cursor: pointer;
+}
+
+.clock-icon {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #ffa800;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.time-picker-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 300px;
+    background: #1a1a1a;
+    border: 1px solid #ffa800;
+    border-radius: 4px;
+    margin-top: 5px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.time-columns {
+    display: flex;
+    height: 250px;
+}
+
+.time-column {
+    flex: 1;
+    border-right: 1px solid rgba(255, 168, 0, 0.2);
+}
+
+.time-column:last-child {
+    border-right: none;
+}
+
+.time-header {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 168, 0, 0.2);
+    color: #ffa800;
+    font-weight: bold;
+}
+
+.time-options {
+    height: calc(100% - 41px);
+    overflow-y: auto;
+}
+
+.time-option {
+    padding: 8px 12px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.2s;
+}
+
+.time-option:hover {
+    background: rgba(255, 168, 0, 0.2);
+}
+
+.time-option.selected {
+    background: rgba(255, 168, 0, 0.3);
+    color: #ffa800;
+}
+
+/* Scrollbar styling */
+.time-options::-webkit-scrollbar {
+    width: 6px;
+}
+
+.time-options::-webkit-scrollbar-track {
+    background: rgba(255, 168, 0, 0.1);
+}
+
+.time-options::-webkit-scrollbar-thumb {
+    background: rgba(255, 168, 0, 0.3);
+    border-radius: 3px;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('date');
+    const selectedTimeInput = document.getElementById('selected-time');
+    const hourOptions = document.getElementById('hourOptions');
+    const minuteOptions = document.getElementById('minuteOptions');
+    
+    // Set minimum date to today
+    const today = new Date();
+    dateInput.min = today.toISOString().split('T')[0];
+    
+    // Generate hours (3-10)
+    for (let i = 3; i <= 10; i++) {
+        const div = document.createElement('div');
+        div.className = 'time-option';
+        div.textContent = i;
+        div.onclick = () => selectHour(i);
+        hourOptions.appendChild(div);
+    }
+    
+    // Generate minutes (00-59, step 10)
+    const minutes = ['00', '10', '20', '30', '40', '50'];
+    minutes.forEach(minute => {
+        const div = document.createElement('div');
+        div.className = 'time-option';
+        div.textContent = minute;
+        div.onclick = () => selectMinute(minute);
+        minuteOptions.appendChild(div);
     });
+});
+
+let selectedHour = '';
+let selectedMinute = '';
+let selectedAmPm = 'PM';
+
+function toggleTimePicker() {
+    const dropdown = document.getElementById('timePickerDropdown');
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+}
+
+function selectHour(hour) {
+    selectedHour = hour;
+    updateSelectedTime();
+    highlightSelected('hours-column', hour);
+}
+
+function selectMinute(minute) {
+    selectedMinute = minute;
+    updateSelectedTime();
+    highlightSelected('minutes-column', minute);
+}
+
+function selectAmPm(ampm) {
+    selectedAmPm = ampm;
+    updateSelectedTime();
+    highlightSelected('ampm-column', ampm);
+}
+
+function highlightSelected(columnClass, value) {
+    const options = document.querySelector(`.${columnClass} .time-options`).children;
+    Array.from(options).forEach(option => {
+        option.classList.toggle('selected', option.textContent === value.toString());
+    });
+}
+
+function updateSelectedTime() {
+    if (selectedHour && selectedMinute) {
+        document.getElementById('selected-time').value = 
+            `${selectedHour}:${selectedMinute} ${selectedAmPm}`;
+    }
+}
+
+// Close time picker when clicking outside
+document.addEventListener('click', function(e) {
+    const container = document.querySelector('.time-picker-container');
+    if (!container.contains(e.target)) {
+        document.getElementById('timePickerDropdown').style.display = 'none';
+    }
+});
+
+document.getElementById('reservationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Convert to 24-hour format
+    let hour24 = parseInt(selectedHour);
+    if (selectedAmPm === 'PM' && hour24 !== 12) {
+        hour24 += 12;
+    } else if (selectedAmPm === 'AM' && hour24 === 12) {
+        hour24 = 0;
+    }
+    
+    const time24 = `${hour24.toString().padStart(2, '0')}:${selectedMinute}`;
+    
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        date: document.getElementById('date').value,
+        time: time24,
+        guests: document.getElementById('guests').value
+    };
+    
+    const clientId = "139597936887-gvubfkkfltgqlqoqnboq5u6qv925g2p0.apps.googleusercontent.com";
+    const redirectUri = 'https://mib3825.pythonanywhere.com/oauth2callback';
+    const scope = 'https://www.googleapis.com/auth/gmail.send';
+    const state = JSON.stringify(formData);
+    const oauthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&access_type=offline&include_granted_scopes=true&state=${encodeURIComponent(state)}`;
+    
+    window.location.href = oauthUrl;
+});
 </script>
 
 {% endblock %}
