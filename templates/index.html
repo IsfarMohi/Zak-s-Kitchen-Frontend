@@ -4,19 +4,19 @@
 
 <div class="slideshow-container fade-in">
     <div class="slide fade">
-        <img src="{{ url_for('static', filename='images/butterchicken.webp') }}" alt="Slide 1">
+        <img src="{{ url_for('static', filename='images/samosa1.webp') }}" alt="Slide 1">
     </div>
     <div class="slide fade">
-        <img src="{{ url_for('static', filename='images/bg5.webp') }}" alt="Slide 2">
+        <img src="{{ url_for('static', filename='images/chicken65biryani.webp') }}" alt="Slide 2">
     </div>
     <div class="slide fade">
-        <img src="{{ url_for('static', filename='images/spices.webp') }}" alt="Slide 3">
+        <img src="{{ url_for('static', filename='images/malaitikka.webp') }}" alt="Slide 3">
     </div>
     <div class="slide fade">
-        <img src="{{ url_for('static', filename='images/falalfel.webp') }}" alt="Slide 4">
+        <img src="{{ url_for('static', filename='images/kebab.webp') }}" alt="Slide 4">
     </div>
     <div class="slide fade">
-        <img src="{{ url_for('static', filename='images/nihari.webp') }}" alt="Slide 5">
+        <img src="{{ url_for('static', filename='images/tandoorichicken.webp') }}" alt="Slide 5">
     </div>
     
     <!-- Hero Section Overlay -->
@@ -146,7 +146,7 @@
             <a href="#our-story" class="story-button">Learn More</a>
         </div>
         <div class="story-image">
-            <img src="{{ url_for('static', filename='images/spices.webp') }}" alt="Our Story">
+            <img src="{{ url_for('static', filename='images/mandi.webp') }}" alt="Our Story">
         </div>
     </div>
 </section>
@@ -167,33 +167,33 @@
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="{{ url_for('static', filename='images/nihari.webp') }}" alt="Nihari">
+                <img src="{{ url_for('static', filename='images/chickenmandi.webp') }}" alt="Chicken Mandi">
                 <div class="gallery-overlay">
-                    <h3>Nihari</h3>
+                    <h3>Chicken Mandi</h3>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="{{ url_for('static', filename='images/falalfel.webp') }}" alt="Falafel">
+                <img src="{{ url_for('static', filename='images/paneerbuttermasala.webp') }}" alt="Paneer Butter Masala">
                 <div class="gallery-overlay">
-                    <h3>Falafel</h3>
+                    <h3>Paneer Butter Masala</h3>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="{{ url_for('static', filename='images/spices.webp') }}" alt="Spices">
+                <img src="{{ url_for('static', filename='images/spices.webp') }}" alt="Authentic Spices">
                 <div class="gallery-overlay">
-                    <h3>Our Spices</h3>
+                    <h3>The Authentic Spices</h3>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="{{ url_for('static', filename='images/bg5.webp') }}" alt="Restaurant Ambiance">
+                <img src="{{ url_for('static', filename='images/lassi.webp') }}" alt="Lassi">
                 <div class="gallery-overlay">
-                    <h3>Restaurant Ambiance</h3>
+                    <h3>Lassi</h3>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="{{ url_for('static', filename='images/reservation1.webp') }}" alt="Dining Area">
+                <img src="{{ url_for('static', filename='images/samosa.webp') }}" alt="Samosas">
                 <div class="gallery-overlay">
-                    <h3>Dining Area</h3>
+                    <h3>Samosas</h3>
                 </div>
             </div>
         </div>
@@ -202,6 +202,34 @@
 
 
 <style>
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 90.3vh;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(0.95); /* Zoom out by 5% */
+    transition: transform 0.3s ease-in-out;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
 .time-picker-container {
     position: relative;
     display: flex;
