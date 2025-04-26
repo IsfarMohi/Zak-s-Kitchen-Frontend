@@ -100,7 +100,7 @@ nav ul li a:hover {
 
 /* Footer */
 footer {
-    background: rgb(34, 34, 34);
+    background: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     width: 100%;
     /* box-shadow: 0 -5px 10px rgba(36, 36, 35, 0.3); */
@@ -157,7 +157,7 @@ footer {
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid #ffaa00c7;
     color: #ffa800;
     font-weight: none;
 }
@@ -645,7 +645,7 @@ nav ul li a:hover::after {
 /* Gallery Section Styles */
 .gallery-section {
     padding: 80px 0 0 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgb(0, 0, 0);
     margin-bottom: 0;
 }
 
@@ -889,7 +889,7 @@ nav ul li a:hover::after {
 
 .legal-container {
     max-width: 800px;
-    height: 0vh;
+    height: auto;
     margin: 0 auto;
     background-color: white;
     padding: 40px;
@@ -898,7 +898,7 @@ nav ul li a:hover::after {
 }
 
 .legal-container h1 {
-    color: #333;
+    color: #000000;
     font-size: 2.5rem;
     margin-bottom: 10px;
     text-align: center;
